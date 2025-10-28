@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>outline.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%F0%9F%A7%A9-pitch-deck-outline--simproof-decentralized-sim-ownership-verification-on-solana">🧩 Pitch Deck Outline — <em>SIMProof: Decentralized SIM Ownership Verification on Solana</em></h1>
+<h2 id="importance-of-trust-and-security-for-telecos">Importance of Trust and security for Telecos</h2>
+<p>In an era marked by rapid digital transformation while the trust is becoming elusive due to upcoming technologies such as generative AI, <strong>trust and security</strong> have become foundational to the infrastructure that underpins our lives. In the telecommunications sector, a domain that blends public-utility scale with critical national infrastructure responsibilities, they are more evidently important.</p>
+<p>Consider the case of SK Telecom. In April 2025, the company disclosed a major breach of its USIM-related data, affecting approximately 23 – 27 million subscriber accounts. (<a href="https://www.koreantopik.com/2025/04/sk-telecom-hit-by-cyberattack-23.html" title="SK Telecom Hit by Cyberattack: 23 Million Users’ Data Exposed in South ...">Korean TOPIK Resources</a>) The fallout was enormous: SK Telecom faced regulatory fines of ₩134 billion (≈ US $97 million), incurred roughly ₩70 billion (≈ US $50 million) in USIM replacement costs, and pledged an additional ₩700 billion (≈ US $510 million) over five years to rebuild its security infrastructure. (<a href="https://www.koreantopik.com/2025/04/sk-telecom-hit-by-cyberattack-23.html" title="SK Telecom hit with $97 million fine over massive data leak">Korean TOPIK Resources</a>)</p>
+<p>But what makes the incident truly alarming is that it doesn’t end with compensation or fines. The leaked USIM authentication keys and subscriber identifiers opened the door to a far more dangerous consequence — enabling SIM-swap attacks that let threat actors impersonate users, seize control of their phone numbers, and access banking, crypto, and social accounts.</p>
+<p>This incident highlights how a single weakness in mobile identity management can cascade into enormous financial loss and long-term trust damage—not just for telcos, but for every digital service that relies on phone-based authentication.</p>
+<p><img src="../images/context.png" alt="Context"></p>
+<h2 id="simswap-is-one-of-the-most-imminent-issues">Simswap is one of the most imminent issues</h2>
+<p>Global data supports the urgency of this threat. According to a recent review of fraud trends by TransUnion, telecommunications companies are increasingly recognising identity and authentication risk as a top concern. (<a href="https://www.transunion.com/lp/telco-fraud-report" title="Telco Fraud Report | TransUnion">transunion.com</a>) Even in the United Kingdom, the fraud prevention agency Cifas reported a staggering <strong>1,055 % surge</strong> in reported SIM-swap fraud between 2023 and 2024. (<a href="https://www.cifas.org.uk/newsroom/huge-surge-see-sim-swaps-hit-telco-and-mobile" title="1,055% surge in unauthorised SIM swaps as mobile and telecoms sector ...">cifas.org.uk</a>)
+<img src="../images/teleco-risk.png" alt="emerging risk"></p>
+<h2 id="what-is-a-sim-swap">What is a SIM swap?</h2>
+<p>A SIM swap (also known as port-out scam, SIM-splitting, or SIM-jacking) is an account-takeover attack that exploits weaknesses in mobile phone authentication.
+In a SIM swap, an attacker tricks a mobile carrier into transferring a victim’s phone number to a new SIM card that the attacker controls. Once this happens, all calls and text messages — including one-time passcodes (OTP) and 2FA codes — are routed to the attacker’s device instead of the victim’s phone.</p>
+<p>This allows the attacker to reset passwords, bypass SMS-based two-factor authentication, and gain access to sensitive accounts such as online banking, cryptocurrency wallets, or social-media profiles.</p>
+<p><img src="../images/Sim-swap-overview.png" alt="Sim Swap"></p>
+<h2 id="how-does-a-sim-swap-work">How does a SIM swap work?</h2>
+<p>A SIM Swap Works as follows:</p>
+<ol>
+<li><strong>Data Gathering:</strong>
+The attacker collects personal details about the victim through phishing, data breaches, or social-engineering (for example, using public social-media info).</li>
+<li><strong>Impersonation:</strong>
+The attacker contacts the victim’s mobile carrier, impersonating the real customer, and claims to have lost or damaged their SIM card.</li>
+<li><strong>Carrier Porting:</strong>
+The carrier — believing the request is legitimate — activates a <strong>new SIM card</strong> tied to the victim’s number. The victim’s real SIM card is deactivated, cutting off all mobile service.</li>
+<li><strong>Account Takeover:</strong>
+The attacker now receives all SMS messages and calls, including password-reset and 2FA codes, giving them full control over the victim’s digital accounts.</li>
+</ol>
+<p><img src="../images/SimSwap.png" alt="Sim Swap"></p>
+<h2 id="why-is-a-sim-swap-so-crucial">Why is a SIM swap so crucial?</h2>
+<p>A SIM Swap is crucial as the attacker effectively <strong>becomes the victim online</strong> once the SIM is swapped.</p>
+<p>They can:</p>
+<ul>
+<li>Reset login credentials on financial, crypto, and social accounts.</li>
+<li>Authorize fraudulent transactions.</li>
+<li>Use the phone number as proof of identity with other services.</li>
+</ul>
+<p>Because mobile numbers are often used as a <strong>primary identity factor</strong>, a single successful SIM swap can lead to <strong>financial loss, identity theft, and long-term damage to trust</strong>.</p>
+<h2 id="the-root-cause">The root cause</h2>
+<p>The core reason SIM-swap attacks succeed isn’t merely technical — it’s social. Mobile carriers still rely on “proof-of-knowledge” authentication: personal details like your address, birthdate, or mother’s maiden name. These can all be obtained through phishing, data leaks, or social engineering, making this system inherently fragile.</p>
+<p>To truly stop SIM-swap fraud, authentication must move beyond what we know to who we are and what we control. Biometric identity or cryptographic proof of wallet ownership offer a far stronger foundation for trust.</p>
+<p>This is where our solution comes in. SIMProof introduces wallet-based authentication tied to non-transferable tokens issued by the Telco. Instead of answering questions on the phone, the real subscriber simply signs a digital challenge using their registered wallet — an action that only the legitimate user can perform. This shifts the trust model from human verification to cryptographic verification, eliminating social-engineering risk at its source.
+<img src="../images/problem.png" alt="Root cause"></p>
+<h2 id="our-solution-simproof">Our solution: SIMProof</h2>
+<p>The core problem behind SIM-swap attacks is weak, knowledge-based verification. Attackers impersonate customers over the phone or online, answering questions like a user’s address or birthday to trick telco staff into reissuing SIM cards. Once the number is ported, the attacker gains full control of SMS-based authentication and resets sensitive accounts.</p>
+<p><img src="../images/architecture.png" alt="Sim Swap"></p>
+<p><strong>SIMProof</strong> replaces this fragile process with cryptographic verification built on <strong>Solana</strong>.
+The system ensures that only the legitimate subscriber—verified through a wallet they control—can authorize actions such as SIM reissue, number change, or plan updates.</p>
+<ol>
+<li><strong>Contract &amp; Registration</strong>
+When a customer subscribes to a SIM or mobile plan, the Telco completes standard KYC and records the customer’s wallet address.
+If the user does not have one, the Telco app creates a <strong>smart wallet</strong> (AA-style) linked to their social or dアカウント login.</li>
+<li><strong>Credential Issuance</strong>
+The Telco mints a <strong>non-transferable Token-2022 NFT</strong> to that wallet.
+This token acts as the on-chain credential proving active subscription—containing only a random binding ID, with <strong>no personal data</strong>.</li>
+<li><strong>Lifecycle Management</strong>
+The Telco’s Solana program maintains a <strong>Status PDA</strong> for each credential.
+This PDA stores the token’s expiration (<code>expires_at</code>) and revocation flag (<code>revoked</code>), enabling the Telco to update validity instantly without touching the user’s wallet.</li>
+<li><strong>Challenge Generation</strong>
+Whenever verification is required (for example, SIM swap, eSIM activation, or contract modification), the Telco backend generates a <strong>cryptographic challenge</strong> containing a nonce, purpose, and expiry.
+The challenge is sent to the user through the web portal, mobile app, or a secure QR/push message.</li>
+<li><strong>User Signature</strong>
+The user reviews the request and <strong>signs the challenge</strong> with their wallet’s private key.
+This signature proves cryptographic control over the registered wallet.</li>
+<li><strong>Verification</strong>
+The Telco verifies the signature using the wallet’s public key, confirming that the signer truly controls the credential wallet.</li>
+<li><strong>Authorization</strong>
+Finally, the Telco checks on Solana that:
+<ul>
+<li>the wallet still <strong>holds the Token-2022 NFT</strong>, and</li>
+<li>the corresponding <strong>PDA status</strong> is valid (<code>!revoked &amp;&amp; now &lt; expires_at</code>).
+If both conditions hold, the request is approved. Otherwise, it is rejected.</li>
+</ul>
+</li>
+</ol>
+<p>Through this flow, SIMProof turns human trust into <strong>mathematical proof</strong>.
+The user owns their credential, the Telco manages its lifecycle, and Solana guarantees verifiable, tamper-proof authentication—eliminating the social-engineering vector that makes SIM-swap attacks possible</p>
+<h2 id="expected-user-experience">Expected User Experience</h2>
+<p>After SIMProof is introduced, the <strong>user experience becomes unified across all channels</strong>—online, over the phone, or in-store. Regardless of how the request starts, the final step of verification is always cryptographic and one-tap simple:</p>
+<p>🔹 <strong>1. User receives a verification request</strong>
+The Telco backend generates a challenge (for example, SIM reissue or number change) and delivers it through the appropriate channel:</p>
+<ul>
+<li><strong>Online:</strong> shown directly on the Telco web/app interface.</li>
+<li><strong>Over the phone:</strong> sent as a push notification or secure link.</li>
+<li><strong>Offline (store):</strong> displayed as a QR code on the staff terminal.</li>
+</ul>
+<p>🔹 <strong>2. User opens wallet or Telco app</strong>
+If the user has a standard crypto wallet (e.g., Phantom), the app opens automatically to show the request.
+If the user uses a smart wallet (AA-style) created via <strong>dアカウント</strong>, they simply unlock their phone or use biometrics.
+Both display:</p>
+<blockquote>
+<p>“DOCOMO requests verification for SIM reissue. Tap ‘Sign’ to confirm.”</p>
+</blockquote>
+<p>🔹 <strong>3. User signs the challenge</strong>
+The user taps <strong>Sign</strong> (or confirms via Face ID / fingerprint).
+The wallet signs the challenge message with their private key—no passwords, no seed phrases, no manual steps.</p>
+<p>🔹 <strong>4. Verification is automatic</strong>
+The signed message returns to the Telco backend, which verifies the signature, checks <strong>NFT ownership</strong> and <strong>PDA status</strong> on <strong>Solana</strong>, and approves instantly.
+The user interface confirms:</p>
+<blockquote>
+<p>✅ “Verification complete. Your request has been approved.”</p>
+</blockquote>
+<p>Through this flow, SIMProof makes verification <strong>instant, consistent, and secure</strong> across every customer-service channel. It turns fragile human trust into <strong>cryptographic proof</strong>, protecting users from SIM-swap fraud while preserving the smooth, familiar experience expected of modern telecom services.</p>
+<p><img src="../images/UX.png" alt="User experience"></p>
+<h2 id="conclusion-and-future-potential">Conclusion and future potential</h2>
+<p>As the global mobile market of over <strong>5.5 billion subscribers</strong> faces rising fraud and identity risks, SIMProof positions Solana at the heart of a new trust infrastructure for telecommunications.
+Beyond preventing SIM-swap attacks, its architecture lays the foundation for <strong>decentralized mobile identity</strong>.
+In the near term, SIMProof leverages Solana’s fast, low-cost on-chain tokens to deliver verifiable ownership and contract lifecycle management.
+Over time, as standards like <strong>W3C Verifiable Credentials</strong> and <strong>Decentralized Identifiers</strong> mature, these tokens can evolve into <strong>interoperable credentials</strong> connecting telcos, banks, and governments.
+Furthermore, by incorporating <strong>token-economy incentives</strong>, SIMProof can reward users for secure behavior and enable telcos to bootstrap community-driven, decentralized network infrastructure—bridging the traditional telecom sector and the broader Web3 economy.</p>
+<p><img src="../images/potential.png" alt="future potential"></p>
+<hr>
+
+</body>
+</html>
