@@ -64,7 +64,7 @@ The core problem behind SIM-swap attacks is weak, knowledge-based verification. 
 The system ensures that only the legitimate subscriber—verified through a wallet they control—can authorize actions such as SIM reissue, number change, or plan updates.
 1. **Contract & Registration**
    When a customer subscribes to a SIM or mobile plan, the Telco completes standard KYC and records the customer’s wallet address.
-   If the user does not have one, the Telco app creates a **smart wallet** (AA-style) linked to their social or dアカウント login.
+   If the user does not have one, the Telco app creates a **smart wallet** (AA-style) linked to their social or d ACCOUNT login.
 2. **Credential Issuance**
    The Telco mints a **non-transferable Token-2022 NFT** to that wallet.
    This token acts as the on-chain credential proving active subscription—containing only a random binding ID, with **no personal data**.
@@ -100,7 +100,7 @@ The Telco backend generates a challenge (for example, SIM reissue or number chan
 
 🔹 **2. User opens wallet or Telco app**
 If the user has a standard crypto wallet (e.g., Phantom), the app opens automatically to show the request.
-If the user uses a smart wallet (AA-style) created via **dアカウント**, they simply unlock their phone or use biometrics.
+If the user uses a smart wallet (AA-style) created via **d ACCOUNT**, they simply unlock their phone or use biometrics.
 Both display:
 
 > “DOCOMO requests verification for SIM reissue. Tap ‘Sign’ to confirm.”
