@@ -36,8 +36,13 @@ jobs:
       - name: Stage page + images
         run: |
           mkdir -p site/images
+          # copy HTML as index
           cp "slides/2025-10-28-sim-swap/output/outline.html" "site/index.html"
+          # copy the images from the parent images/ directory
           cp -R "slides/2025-10-28-sim-swap/images/." "site/images/"
+          # rewrite ../images/... -> images/... (works under /simproof-pitch/)
+          sed -i 's#src="\.\./images/#src="images/#g' site/index.html
+          sed -i "s#src='../images/#src='images/#g" site/index.html
           touch "site/.nojekyll"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
